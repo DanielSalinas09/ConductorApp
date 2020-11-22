@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: ^1.0.6
+  curved_navigation_bar: ^0.3.4
   
   
 

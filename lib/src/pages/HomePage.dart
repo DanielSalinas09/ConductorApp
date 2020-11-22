@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'trafficPage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -11,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+  int currentIndex = 0;
   Set<Polyline> polyline = Set<Polyline>();
 
   @override
@@ -238,45 +241,47 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
           body: Stack(children: [
             _crearMapa(),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 30, 10, 0),
-              height: 100,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/logo.png'),
-                alignment: Alignment.topRight,
-              )),
-            )
+            _logoChild(),
+            _loadPage(currentIndex,context),
           ]),
-          bottomNavigationBar: _crearBottomNavigationBar()),
+          bottomNavigationBar: _crearBottomNavigationBar()
+          ),
     );
   }
+  Widget _loadPage(int paginaActual, BuildContext context){
+    switch(paginaActual){
+      case 0:
+        return _crearMapa(); 
+      case 1:
+        return _robo();
+       
+      case 2:
+        return TrafficPage();
+        
+      default:
+      return HomePage();
+      
 
+    }
+  }
+Widget _robo(){
+  return Container();
+}
   Widget _crearBottomNavigationBar() {
-    return BottomNavigationBar(
-      backgroundColor: Colors.blue[300],
-      fixedColor: Colors.white,
-      currentIndex: _currentIndex,
+    return CurvedNavigationBar(
+       animationCurve: Curves.easeInOut,
+       animationDuration: Duration(milliseconds: 600),
+      backgroundColor: Colors.white,
+      color: Colors.blue[300],
       onTap: (index) {
         setState(() {
-          _currentIndex = index;
+          currentIndex = index;
         });
       },
       items: [
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.notifications,
-            size: 40,
-          ),
-          label: 'Robo',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.traffic,
-            size: 40,
-          ),
-          label: 'Trafico',
-        ),
+        Icon(Icons.map,size: 30, ),
+        Icon(Icons.notifications, size: 30, ),
+        Icon(Icons.traffic, size: 30,),
       ],
     );
   }
@@ -289,5 +294,35 @@ class _HomePageState extends State<HomePage> {
       ),
       polylines: polyline,
     );
+  }
+
+  Widget _logoChild() {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 30, 10, 0),
+      height: 100,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('assets/logo.png'),
+        alignment: Alignment.topRight,
+      )),
+    );
+  }
+
+  Widget _trafico() {
+  }
+
+  void _showDialog(BuildContext context){
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context){
+        return AlertDialog(
+          title: Text('Alerta de Robo'),
+          content: Text('¿Esta seguro de enviar alerta?'),
+
+        );
+      }
+      );
+
   }
 }
