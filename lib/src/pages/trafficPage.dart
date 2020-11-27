@@ -10,52 +10,52 @@ class TrafficPage extends StatefulWidget {
 class _TrafficPageState extends State<TrafficPage> {
   @override
   Widget build(BuildContext context) {
-      return Container(
-      alignment: Alignment(1,1),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          
-          children: [
-        
-        Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(55),
-                    topRight: Radius.circular(55))),
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Trafico',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontFamily: 'Raleway',
-                    ),
+    return ListView(children: [
+      SizedBox(height: 490, ),
+      Container(
+         
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(55),
+                        topRight: Radius.circular(55))),
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Trafico',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontFamily: 'Raleway',
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Mensaje',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 17,
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      _input(),
+                      SizedBox(height: 15),
+                      _button(),
+                    ],
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Mensaje',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 17,
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  _input(),
-                  SizedBox(height: 15),
-                  _button(),
-                ],
+                ),
               ),
-            ),
-          ),
-        
-      ],
-    ));
+            ],
+          )),
+    ]);
   }
 
   Widget _button() {
@@ -91,6 +91,9 @@ class _TrafficPageState extends State<TrafficPage> {
             padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
             child: TextField(
               decoration: InputDecoration(border: InputBorder.none),
+              onChanged: (valor) {
+                setState(() {});
+              },
             ),
           )
         ],
