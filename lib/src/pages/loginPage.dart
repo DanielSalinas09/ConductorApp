@@ -1,5 +1,5 @@
 import 'package:conductor/src/blocs/provider.dart';
-import 'package:conductor/src/providers/loginProvider.dart';
+import 'package:conductor/src/providers/usuario_Provider.dart';
 
 import 'package:flutter/material.dart';
 
@@ -197,9 +197,40 @@ class _LoginState extends State<LoginPage> {
           );
         });
   }
-  _login(LoginBloc bloc, BuildContext context){
+  _login(LoginBloc bloc, BuildContext context) async{
     
-    usuarioProvider.login(bloc.cc, bloc.password);
-    //Navigator.pushReplacementNamed(context, 'home');
+    
+    Map info =await usuarioProvider.login(bloc.cc, bloc.password);
+
+    if(info['ok']){
+      Navigator.pushReplacementNamed(context, 'home');
+    }else{
+      print(info['mensaje']);
+      _mostrarAlert(context,info['mensaje']);
+    }
+
+
+    
+  }
+
+  void _mostrarAlert(BuildContext context, String mensaje) {
+    showDialog(
+      context: context,
+      builder: (context){
+        return AlertDialog(
+          title: Text('Informacion incorrecta',
+           style: TextStyle(fontSize: 25),
+          ),
+          content: Text(mensaje,
+          style: TextStyle(fontSize: 18),),
+          actions: [
+            FlatButton(
+              child: Text('Ok',style: TextStyle(fontSize: 20)),
+              onPressed:()=>Navigator.of(context).pop(), 
+              )
+          ],
+          );
+      }
+      );
   }
 }
