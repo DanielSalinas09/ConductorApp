@@ -34,10 +34,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   heightFactor: 1.4,
                   child: Image(
                     image: AssetImage('assets/logo.png'),
+                    width: 286,
                   )),
               Text(
                 'Viajar esta en tus manos',
-                style: TextStyle(fontSize: 16, fontFamily: "Raleway"),
+                style: TextStyle(fontSize: 18, fontFamily: "Raleway"),
               ),
               Spacer(
                 flex: 3,

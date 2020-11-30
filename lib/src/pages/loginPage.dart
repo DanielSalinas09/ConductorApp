@@ -32,7 +32,7 @@ class _LoginState extends State<LoginPage> {
           heightFactor: 1.4,
           child: Image(
             image: AssetImage('assets/logo.png'),
-            width: 230,
+            width: 286,
           )),
     );
   }
@@ -197,20 +197,16 @@ class _LoginState extends State<LoginPage> {
           );
         });
   }
-  _login(LoginBloc bloc, BuildContext context) async{
-    
-    
-    Map info =await usuarioProvider.login(bloc.cc, bloc.password);
 
+
+
+  _login(LoginBloc bloc, BuildContext context) async{
+    Map info =await usuarioProvider.login(bloc.cc, bloc.password);
     if(info['ok']){
       Navigator.pushReplacementNamed(context, 'home');
     }else{
-      print(info['mensaje']);
       _mostrarAlert(context,info['mensaje']);
-    }
-
-
-    
+    }  
   }
 
   void _mostrarAlert(BuildContext context, String mensaje) {

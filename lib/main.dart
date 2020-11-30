@@ -18,9 +18,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _prefs = new PreferenciasUsuario();
-    print("======");
-    print(_prefs.token);
     return Provider(
       child: MaterialApp(
         title: 'Conductor',

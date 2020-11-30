@@ -1,3 +1,4 @@
+import 'package:conductor/src/providers/alertaTrafico_Provier.dart';
 import 'package:flutter/material.dart';
 
 class TrafficPage extends StatefulWidget {
@@ -8,6 +9,10 @@ class TrafficPage extends StatefulWidget {
 }
 
 class _TrafficPageState extends State<TrafficPage> {
+
+  final _alerta = new AlertTraficProvider();
+  String _message;
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
@@ -61,7 +66,7 @@ class _TrafficPageState extends State<TrafficPage> {
   Widget _button() {
     return RaisedButton(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-      onPressed: () {},
+      onPressed: ()=>_alerta.pedirDatosAlert(_message),
       color: Colors.blue[300],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(60),
@@ -92,7 +97,9 @@ class _TrafficPageState extends State<TrafficPage> {
             child: TextField(
               decoration: InputDecoration(border: InputBorder.none),
               onChanged: (valor) {
-                setState(() {});
+                setState(() {
+                  _message = valor;
+                });
               },
             ),
           )
