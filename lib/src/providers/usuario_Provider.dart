@@ -18,7 +18,7 @@ class UsuarioProvider {
       'password': password,
     });
     Map<String, dynamic> decodeResp = jsonDecode(resp.body);
-
+    print(decodeResp);
     if (decodeResp['status']=='login correcto') {
       print(decodeResp['data']['token']);
       _prefs.token= decodeResp['data']['token'];

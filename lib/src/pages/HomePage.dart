@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
         crearPolylineViaCaracoliReturn();
         
         break;
-      case"D11 - Malambo- calle 17 - zoologico":
+      case"D11 Malambo- calle 17 - zoologico":
         crearPolylineCalle17Ida();
         crearPolylineCalle17Return();
         break;
